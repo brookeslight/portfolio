@@ -1,7 +1,11 @@
-fetch('/portfolio/modular/head.html')
-  .then(response => response.text())
-  .then(data => {
-    const headFragment = document.createRange().createContextualFragment(data);
-    document.querySelector('head').appendChild(headFragment);
-  })
-  .catch(error => console.error('Error loading head:', error));
+(() => {
+  const scriptPath = document.currentScript.src;
+  const basePath = scriptPath.substring(0, scriptPath.lastIndexOf('/') + 1);
+  fetch(basePath + 'head.html')
+    .then(response => response.text())
+    .then(data => {
+      const headFragment = document.createRange().createContextualFragment(data);
+      document.querySelector('head').appendChild(headFragment);
+    })
+    .catch(error => console.error('Error loading head:', error));
+})();
