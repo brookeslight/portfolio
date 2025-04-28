@@ -1,4 +1,4 @@
-fetch('../modular/head.html')
+fetch('/portfolio/modular/head.html')
   .then(response => response.text())
   .then(data => {
     const headFragment = document.createRange().createContextualFragment(data);
