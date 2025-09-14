@@ -17,7 +17,7 @@ const nOFDMSymbols = 14; // per slot
 const nSlotsPerSubframe = Array.from({length: 9}, (_, i) => Math.pow(2, i));
 
 function setup() {
-    let canvas = createCanvas(900, 500);
+    let canvas = createCanvas(1920, 1080);
     canvas.parent('canvas-container');
     noStroke();
     textFont('monospace', 12);
@@ -145,15 +145,18 @@ function drawFrequencyTimeGrid() {
 function drawLabels() {
     fill(0);
     textAlign(LEFT, TOP);
-    text('Numerology (μ): ' + numerology + ' (Press UP/DOWN)', 20, 20);
-    text('Subcarrier spacing: ' + (15 * Math.pow(2, numerology)) + ' kHz', 20, 40);
-    text('Slots per subframe: ' + nSlotsPerSubframe[numerology], 20, 60);
-    text('Resource Block: colored rectangles', 20, 80);
-    text('Resource Element: colored small cells', 20, 100);
-    text('BWP boundary: green lines', 20, 120);
-    text('Slot boundary: blue lines', 20, 140);
+    let labelY = 520; // Move labels even lower below the grid
+    text('Numerology (μ): ' + numerology + ' (Press UP/DOWN)', 20, labelY);
+    text('Subcarrier spacing: ' + (15 * Math.pow(2, numerology)) + ' kHz', 20, labelY + 20);
+    text('Slots per subframe: ' + nSlotsPerSubframe[numerology], 20, labelY + 40);
+    text('Resource Block: colored rectangles', 20, labelY + 60);
+    text('Resource Element: colored small cells', 20, labelY + 80);
+    text('BWP boundary: green lines', 20, labelY + 100);
+    text('Slot boundary: blue lines', 20, labelY + 120);
     textAlign(CENTER, CENTER);
-    text('Time Domain (slots)', 470, 30);
+    // Move x-axis label below the grid
+    text('Time Domain (slots)', 470, 440);
+    // y-axis label remains on the left
     push();
     translate(60, 240);
     rotate(-HALF_PI);
